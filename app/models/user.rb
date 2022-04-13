@@ -10,8 +10,8 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, allow_blank: true
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, allow_blank: true } do
-    validates :first_name
     validates :last_name
+    validates :first_name
   end
 
   with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, allow_blank: true } do
