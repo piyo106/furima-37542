@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品を出品できない場合' do
-      it '商品画像が存在しないと保存できない' doz
+      it '商品画像が存在しないと保存できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
