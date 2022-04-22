@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if @order_shipping_address.valid?
       pay_item
       @order_shipping_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       @item = Item.find(params[:item_id])
       render :index
