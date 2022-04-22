@@ -60,6 +60,11 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include "Tel is invalid. Input half-width-digit"
       end
+      it 'tokenが空では保存できないこと' do
+        @order_shipping_address.token = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include "Token can't be blank"
+      end
       it 'userが紐づいていないと保存できないこと' do
         @order_shipping_address.user_id = nil
         @order_shipping_address.valid?
