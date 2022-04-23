@@ -50,8 +50,13 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include "Tel can't be blank"
       end
-      it 'telが10桁か11桁以外だと保存できないこと' do
-        @order_shipping_address.tel = '090-1234-5678'
+      it 'telが9桁以下だと保存できないこと' do
+        @order_shipping_address.tel = '090123456'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include "Tel is invalid. Input half-width-digit"
+      end
+      it 'telが11桁以上だと保存できないこと' do
+        @order_shipping_address.tel = '090-12345678'
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include "Tel is invalid. Input half-width-digit"
       end
