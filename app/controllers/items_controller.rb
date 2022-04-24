@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
-  
+
   private
 
   def item_params
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @item.user_id
+    if current_user.id != @item.user_id || @item.order.present?
       redirect_to action: :index
     end
   end
